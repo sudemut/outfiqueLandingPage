@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTFIQUE | Your Outfit, Your Story</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        
+        :root {
+            --navy: #000b41;
+            --pink: #ffc0c0;
+            --light-blue: #e6f0ff;
+            --mint: #e6fff0;
+            --cream: #fff5e0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .bg-navy {
+            background-color: var(--navy);
+        }
+        
+        .bg-pink {
+            background-color: var(--pink);
+        }
+        
+        .bg-light-blue {
+            background-color: var(--light-blue);
+        }
+        
+        .bg-mint {
+            background-color: var(--mint);
+        }
+        
+        .bg-cream {
+            background-color: var(--cream);
+        }
+        
+        .text-navy {
+            color: var(--navy);
+        }
+        
+        .navy-gradient {
+            background: linear-gradient(to right, #000b41, #001b71);
+        }
+        
+        .hero-split {
+            position: relative;
+        }
+        
+        .hero-split::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: var(--cream);
+            z-index: -1;
+        }
+        
+        .hero-split::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: var(--pink);
+            z-index: -1;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 11, 65, 0.1);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .staggered-delay-1 {
+            transition-delay: 0.2s;
+        }
+        
+        .staggered-delay-2 {
+            transition-delay: 0.4s;
+        }
+        
+        .staggered-delay-3 {
+            transition-delay: 0.6s;
+        }
+        
+        .staggered-delay-4 {
+            transition-delay: 0.8s;
+        }
+        
+        .challenge-bubble {
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .challenge-bubble:hover {
+            transform: scale(1.05);
+        }
+        
+        .outfit-item {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .outfit-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .item-tag {
+            position: absolute;
+            background-color: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ai-badge {
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            color: white;
+            border-radius: 20px;
+            padding: 2px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        
+        .curved-section {
+            position: relative;
+            padding-bottom: 100px;
+        }
+        
+        .curved-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: var(--light-blue);
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+            z-index: -1;
+        }
+        
+        .demo-card {
+            background: linear-gradient(145deg, #ffffff, #f5f7fa);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 11, 65, 0.1);
+            transform: perspective(1000px) rotateY(-15deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .demo-card:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        
+        .animated-gradient-text {
+            background: linear-gradient(270deg, #000b41, #4a00e0);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 8s ease infinite;
+        }
+        
+        @keyframes gradientText {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .dots-pattern {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-image: radial-gradient(circle, var(--navy) 2px, transparent 2px);
+            background-size: 20px 20px;
+            opacity: 0.2;
+        }
+        
+        .wave-pattern {
+            position: absolute;
+            height: 50px;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 11, 65, 0.05) 10px,
+                rgba(0, 11, 65, 0.05) 20px
+            );
+        }
+/* Wardrobe Animation Styles */
+.wardrobe-animation-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+/* Wardrobe closet styling */
+.wardrobe-closet {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 350px;
+    background-color: #f5f0e8;
+    border: 8px solid #8a6e52;
+    border-radius: 10px 10px 0 0;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Wardrobe doors */
+.wardrobe-door-left, .wardrobe-door-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #a38566;
+    z-index: 3;
+    transition: transform 1s ease;
+}
+
+.wardrobe-door-left {
+    left: 0;
+    border-right: 2px solid #8a6e52;
+    transform-origin: left;
+}
+
+.wardrobe-door-right {
+    right: 0;
+    border-left: 2px solid #8a6e52;
+    transform-origin: right;
+}
+
+/* Door handles */
+.door-handle-left, .door-handle-right {
+    position: absolute;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: #ffd700;
+    border-radius: 50%;
+    z-index: 4;
+}
+
+.door-handle-left {
+    right: 10px;
+}
+
+.door-handle-right {
+    left: 10px;
+}
+
+/* Wardrobe interior shelves */
+.wardrobe-shelf {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 5px;
+    background-color: #8a6e52;
+    z-index: 1;
+}
+
+.wardrobe-shelf:nth-child(1) {
+    top: 33%;
+}
+
+.wardrobe-shelf:nth-child(2) {
+    top: 66%;
+}
+
+/* Animation to open wardrobe doors */
+.wardrobe-open .wardrobe-door-left {
+    transform: rotateY(-100deg);
+}
+
+.wardrobe-open .wardrobe-door-right {
+    transform: rotateY(100deg);
+}
+
+/* Clothing items to be animated */
+.clothing-item {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: -60px;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* Different clothing types with real images */
+.shirt {
+    background: url("images/ust3.jpg") no-repeat center;
+    background-size: contain;
+}
+
+.pants {
+    background: url("images/pants.jpg") no-repeat center;
+    background-size: contain;
+}
+
+.dress {
+    background: url("images/dress.jpg") no-repeat center;
+    background-size: contain;
+}
+
+.shoes {
+    background: url("images/shoes.jpg") no-repeat center;
+    background-size: contain;
+}
+
+.jacket {
+    background: url("images/jacket.jpg") no-repeat center;
+    background-size: contain;
+}
+
+.skirt {
+    background: url("images/skirt.jpg") no-repeat center;
+    background-size: contain;
+}
+
+.sunglasses {
+    background: url("images/sunglass.jpg") no-repeat center;
+    background-size: contain;
+}
+
+
+/* Animation for falling clothes */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(450px) rotate(20deg);
+        opacity: 1;
+    }
+}
+
+/* Animation for clothes entering wardrobe - kalıcı */
+@keyframes enterWardrobe {
+    0% {
+        transform: translateY(450px) rotate(20deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(400px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(420px) rotate(0deg); /* Dolapta görünür kalması için biraz yüksekte dursun */
+        opacity: 0.7; /* Tamamen kaybolmasın, hafif görünsün */
+    }
+}
+
+/* Wardrobe color overlay for clothing items */
+.shirt.color-1 { filter: hue-rotate(0deg) saturate(1.5); } /* Pink */
+.shirt.color-2 { filter: hue-rotate(180deg) saturate(0.8); } /* Light blue */
+.shirt.color-3 { filter: hue-rotate(120deg) saturate(0.8); } /* Mint */
+.shirt.color-4 { filter: hue-rotate(40deg) saturate(0.5); } /* Cream */
+.shirt.color-5 { filter: hue-rotate(240deg) saturate(2) brightness(0.7); } /* Navy */
+
+.pants.color-1 { filter: hue-rotate(0deg) saturate(1.5); } /* Pink */
+.pants.color-2 { filter: hue-rotate(180deg) saturate(0.8); } /* Light blue */
+.pants.color-3 { filter: hue-rotate(120deg) saturate(0.8); } /* Mint */
+.pants.color-4 { filter: hue-rotate(40deg) saturate(0.5); } /* Cream */
+.pants.color-5 { filter: hue-rotate(240deg) saturate(2) brightness(0.7); } /* Navy */
+
+.dress.color-1 { filter: hue-rotate(0deg) saturate(1.5); } /* Pink */
+.dress.color-2 { filter: hue-rotate(180deg) saturate(0.8); } /* Light blue */
+.dress.color-3 { filter: hue-rotate(120deg) saturate(0.8); } /* Mint */
+.dress.color-4 { filter: hue-rotate(40deg) saturate(0.5); } /* Cream */
+.dress.color-5 { filter: hue-rotate(240deg) saturate(2) brightness(0.7); } /* Navy */
+
+.shoes.color-1 { filter: hue-rotate(0deg) saturate(1.5); } /* Pink */
+.shoes.color-2 { filter: hue-rotate(180deg) saturate(0.8); } /* Light blue */
+.shoes.color-3 { filter: hue-rotate(120deg) saturate(0.8); } /* Mint */
+.shoes.color-4 { filter: hue-rotate(40deg) saturate(0.5); } /* Cream */
+.shoes.color-5 { filter: hue-rotate(240deg) saturate(2) brightness(0.7); } /* Navy */
+
+/* Mobil cihazlarda görünüm ayarı */
+@media (max-width: 768px) {
+    .wardrobe-animation-container {
+        height: 400px;
+    }
+    
+    .wardrobe-closet {
+        width: 250px;
+        height: 300px;
+    }
+}
+        
+        /* AI Section Style Enhancements */
+        .outfit-display-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .outfit-main {
+            width: 60%;
+            height: 80%;
+            top: 10%;
+            left: 20%;
+            z-index: 1;
+        }
+
+        .outfit-top {
+            width: 35%;
+            height: 30%;
+            top: 5%;
+            left: 5%;
+            z-index: 2;
+        }
+
+        .outfit-bottom {
+            width: 35%;
+            height: 30%;
+            top: 65%;
+            left: 5%;
+            z-index: 2;
+        }
+
+        .outfit-shoes {
+            width: 30%;
+            height: 25%;
+            top: 15%;
+            right: 5%;
+            z-index: 2;
+        }
+
+        .outfit-accessories {
+            width: 30%;
+            height: 25%;
+            top: 65%;
+            right: 5%;
+            z-index: 2;
+        }
+
+        .top-tag {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bottom-tag {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .shoes-tag {
+            top: 50%;
+            right: -15px;
+            transform: translateY(-50%);
+        }
+
+        .accessories-tag {
+            top: 50%;
+            left: -15px;
+            transform: translateY(-50%);
+        }
+
+        .ai-feature-step {
+            padding: 1rem;
+            border-left: 3px solid #ffc0c0;
+            margin-bottom: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .ai-feature-step:hover {
+            background-color: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 6px rgba(0, 11, 65, 0.1);
+        }
+
+        .ai-feature-step h3 {
+            display: flex;
+            align-items: center;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-feature-step h3 i {
+            color: #4a00e0;
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 0, 224, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(74, 0, 224, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 0, 224, 0);
+            }
+        }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+        .delay-700 { transition-delay: 0.7s; }
+        .delay-800 { transition-delay: 0.8s; }
+        /* Enhanced Outfit Display Styles */
+.outfit-display-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+    overflow: visible; /* Changed from hidden to allow items to appear outside */
+}
+
+/* Main outfit image */
+.outfit-main {
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    top: 10%;
+    left: 20%;
+    z-index: 1;
+    cursor: pointer; /* Indicate it's clickable */
+    transition: transform 0.3s ease;
+}
+
+.outfit-main:hover {
+    transform: scale(1.02); /* Subtle hover effect */
+}
+
+/* Individual outfit components */
+.outfit-top,
+.outfit-bottom,
+.outfit-shoes,
+.outfit-accessories {
+    position: absolute;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy transition */
+    z-index: 2;
+    cursor: pointer;
+}
+
+.outfit-top {
+    width: 35%;
+    height: 30%;
+    top: 5%; 
+    left: 5%;
+}
+
+.outfit-bottom {
+    width: 35%;
+    height: 30%;
+    top: 65%;
+    left: 60%;
+}
+
+.outfit-shoes {
+    width: 30%;
+    height: 25%;
+    top: 15%;
+    right: 5%;
+}
+
+.outfit-accessories {
+    width: 30%;
+    height: 25%;
+    top: 65%;
+    right: 5%;
+}
+
+/* Item tags */
+.item-tag {
+    position: absolute;
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    transition: all 0.3s ease;
+}
+
+.item-tag.pulse {
+    animation: tagPulse 2s infinite;
+}
+
+@keyframes tagPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 11, 65, 0.7);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(0, 11, 65, 0);
+        transform: scale(1.1);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 11, 65, 0);
+        transform: scale(1);
+    }
+}
+
+.top-tag {
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bottom-tag {
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.shoes-tag {
+    top: 50%;
+    right: -15px;
+    transform: translateY(-50%);
+}
+
+.accessories-tag {
+    top: 50%;
+    left: -15px;
+    transform: translateY(-50%);
+}
+
+/* Animation for clothing items emerging from main outfit */
+@keyframes emergeFromCenter {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .outfit-display-container {
+        height: 400px;
+    }
+    
+    .outfit-main {
+        width: 70%;
+        left: 15%;
+    }
+    
+    .outfit-top, .outfit-bottom {
+        width: 40%;
+    }
+    
+    .outfit-shoes, .outfit-accessories {
+        width: 35%;
+    }
+}
+    </style>
+</head>
+<body class="bg-white">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Force display of Why Outfique section content
+          document.querySelectorAll('.bg-light-blue .fade-in').forEach(element => {
+            element.classList.add('active');
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          });
+          
+          // Make sure all fade-in elements eventually display
+          setTimeout(() => {
+            document.querySelectorAll('.fade-in').forEach(element => {
+              element.classList.add('active');
+              element.style.opacity = '1';
+              element.style.transform = 'translateY(0)';
+            });
+          }, 500);
+        });
+      </script>
+    <!-- Navigation -->
+    <nav class="absolute top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 py-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-navy playfair font-bold text-3xl">OUTFIQUE</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#features" class="text-navy hover:text-purple-700 transition duration-300">Features</a>
+                <a href="#challenges" class="text-navy hover:text-purple-700 transition duration-300">Challenges</a>
+                <a href="#wardrobe" class="text-navy hover:text-purple-700 transition duration-300">Digital Wardrobe</a>
+                <a href="#demo" class="bg-navy text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-300">Join Demo</a>
+            </div>
+            <button class="md:hidden text-navy">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<!-- Hero Section with Enhanced Right Side -->
+<section class="hero-split min-h-screen relative flex items-center pt-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 z-10">
+        <div class="flex flex-col lg:flex-row items-center">
+            <!-- Left Side: Text Content (unchanged) -->
+            <div class="w-full lg:w-1/2 mb-12 lg:mb-0">
+                <div class="max-w-lg mx-auto lg:mx-0">
+                    <h1 class="playfair text-5xl md:text-7xl font-bold text-navy mb-6">YOUR OUTFIT, YOUR STORY</h1>
+                    <p class="text-lg text-gray-700 mb-8">Share your style instantly, find inspiration effortlessly, and make the most of your wardrobe with AI-powered outfit recommendations.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#demo" class="bg-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition duration-300 text-center">Join Demo</a>
+                        <a href="#features" class="border-2 border-navy text-navy px-8 py-3 rounded-full font-semibold hover:bg-navy hover:text-white transition duration-300 text-center">Explore Features</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side: App Showcase with Social Features -->
+            <div class="w-full lg:w-1/2 relative">
+                <!-- Main Image -->
+                <img src="images/headd.png" alt="Outfit of the day showcase" class="w-4/5 mx-auto rounded-xl shadow-2xl floating">
+                
+                <!-- Original Badges (keep these) -->
+                <div class="absolute -top-8 -right-4 bg-cream rounded-full w-24 h-24 flex items-center justify-center shadow-lg">
+                    <p class="text-navy font-bold">AI-Powered</p>
+                </div>
+                <div class="absolute -bottom-8 -left-4 bg-mint rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
+                    <p class="text-navy font-bold text-center">Daily Style Widget</p>
+                </div>
+                
+                <!-- New Feature Badge: Social Feed -->
+                <div class="absolute top-1/4 -right-6 bg-light-blue rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg">
+                    <i class="fas fa-users text-navy text-lg mb-1"></i>
+                    <p class="text-navy font-bold text-sm text-center">Friend-to-Friend Sharing</p>
+                </div>
+                
+                <!-- New Feature Badge: Style Communities -->
+                <div class="absolute top-2/3 -left-6 bg-cream rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg">
+                    <i class="fas fa-fire text-navy text-lg mb-1"></i>
+                    <p class="text-navy font-bold text-sm text-center">Trending Styles</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dots-pattern top-10 left-10"></div>
+    <div class="dots-pattern bottom-10 right-10"></div>
+</section>
+    <!-- Problem & Solution Section -->
+    <section class="py-20 bg-light-blue">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6">Why Outfique?</h2>
+                <p class="text-lg text-gray-700">Creating a digital fashion experience that's personal, sustainable, and social.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="bg-white rounded-xl p-8 shadow-xl fade-in">
+                    <h3 class="playfair text-2xl font-bold text-navy mb-6">Current Challenges</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="bg-pink rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-search text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Lost in Endless Scrolling</h4>
+                                <p class="text-gray-700">Outfit posts get lost in existing platforms, overshadowed by professional content.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-pink rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-shopping-bag text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Encouraging Overconsumption</h4>
+                                <p class="text-gray-700">Users aren't encouraged to maximize their existing wardrobe instead of buying new clothes.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-pink rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-clock text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Time-Consuming Inspiration</h4>
+                                <p class="text-gray-700">Users can't instantly see their friends' daily outfits and waste time searching for inspiration.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-xl fade-in staggered-delay-2">
+                    <h3 class="playfair text-2xl font-bold text-navy mb-6">Outfique Solutions</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="bg-mint rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-bolt text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Fast Outfit Sharing</h4>
+                                <p class="text-gray-700">Adding friends via phone number, explore section, and built-in camera system for effortless outfit sharing.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-mint rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-leaf text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Sustainable Fashion Focus</h4>
+                                <p class="text-gray-700">Capsule wardrobe, sustainable brand tags, and "Wear It 30 Times" challenge to promote conscious consumption.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-mint rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-mobile-alt text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Instant Outfit Viewing</h4>
+                                <p class="text-gray-700">See friends' daily outfits directly on the home screen for quick style inspiration, enhanced by AI-driven recommendations.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Highlight Section -->
+<!-- AI Features Highlight Section -->
+<section id="features" class="py-20 relative overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <span class="ai-badge">Powered by AI</span>
+            <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6 animated-gradient-text">Outfit Analysis & Smart Styling</h2>
+            <p class="text-lg text-gray-700">Our AI recognizes every item in your outfit photo, adds it to your digital wardrobe, and provides personalized styling recommendations.</p>
+        </div>
+        
+        <div class="flex flex-col lg:flex-row items-center justify-between">
+            <div class="w-full lg:w-1/2 mb-12 lg:mb-0 relative">
+                <div class="outfit-display-container">
+                    <!-- Main outfit image -->
+                    <div class="outfit-item outfit-main">
+                        <img src="images/fittt.png" alt="Full outfit" class="rounded-xl shadow-2xl">
+                    </div>
+                    
+                    <!-- Top clothing item -->
+                    <div class="outfit-item outfit-top fade-in delay-100">
+                        <div class="item-tag top-tag pulse">TOP</div>
+                        <img src="images/top.png" alt="Top clothing item">
+                    </div>
+                    
+                    <!-- Bottom clothing item -->
+                    <div class="outfit-item outfit-bottom fade-in delay-300">
+                        <div class="item-tag bottom-tag">BOTTOM</div>
+                        <img src="images/bottom.png" alt="Bottom clothing item">
+                    </div>
+                    
+                    <!-- Shoes item -->
+                    <div class="outfit-item outfit-shoes fade-in delay-500">
+                        <div class="item-tag shoes-tag">SHOES</div>
+                        <img src="images/shoe.png" alt="Shoes item">
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="w-full lg:w-2/5">
+                <div class="space-y-8">
+                    <div class="ai-feature-step fade-in">
+                        <h3>
+                            <i class="fas fa-camera"></i>
+                            Take a Photo
+                        </h3>
+                        <p class="text-gray-700">Use our integrated camera system to take high-quality outfit photos without external apps.</p>
+                    </div>
+                    
+                    <div class="ai-feature-step fade-in delay-200">
+                        <h3>
+                            <i class="fas fa-magic"></i>
+                            AI Recognizes Each Item
+                        </h3>
+                        <p class="text-gray-700">Our advanced AI analyzes your photo and automatically identifies and categorizes each clothing item.</p>
+                    </div>
+                    
+                    <div class="ai-feature-step fade-in delay-400">
+                        <h3>
+                            <i class="fas fa-tshirt"></i>
+                            Adds to Digital Wardrobe
+                        </h3>
+                        <p class="text-gray-700">Each recognized item is added to your digital wardrobe, organized by category for easy access.</p>
+                    </div>
+                    
+                    <div class="ai-feature-step fade-in delay-600">
+                        <h3>
+                            <i class="fas fa-lightbulb"></i>
+                            Get Personal Style Suggestions
+                        </h3>
+                        <p class="text-gray-700">Based on your existing wardrobe, our AI recommends outfit combinations tailored to your style preferences.</p>
+                    </div>
+                    
+                    <div class="ai-feature-step fade-in delay-800">
+                        <h3>
+                            <i class="fas fa-chart-line"></i>
+                            Track Usage & Sustainability
+                        </h3>
+                        <p class="text-gray-700">Monitor how often you wear each item and see your environmental impact through our sustainability tracker.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wave-pattern bottom-0 left-0 w-full"></div>
+</section>
+
+    <!-- Features Grid Section -->
+    <section class="py-20 bg-cream">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6">What We Offer</h2>
+                <p class="text-lg text-gray-700">A complete solution for your daily outfit needs.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-xl p-6 shadow-lg fade-in">
+                    <div class="w-14 h-14 bg-pink rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-navy text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Fast & Easy Outfit Sharing</h3>
+                    <p class="text-gray-700">Add friends via phone number and share outfits instantly with our built-in camera system.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl p-6 shadow-lg fade-in staggered-delay-1">
+                    <div class="w-14 h-14 bg-light-blue rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-navy text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Widget for Quick Inspiration</h3>
+                    <p class="text-gray-700">See friends' daily outfits directly on your home screen for instant style inspiration.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl p-6 shadow-lg fade-in staggered-delay-2">
+                    <div class="w-14 h-14 bg-mint rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-leaf text-navy text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Sustainable Fashion Focus</h3>
+                    <p class="text-gray-700">Encourage conscious consumption with features like capsule wardrobe & "Wear It 30 Times" challenge.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl p-6 shadow-lg fade-in">
+                    <div class="w-14 h-14 bg-pink rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tshirt text-navy text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Digital Wardrobe</h3>
+                    <p class="text-gray-700">Users can upload their clothing items and categorize them for better outfit planning.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl p-6 shadow-lg fade-in staggered-delay-1">
+                    <div class="w-14 h-14 bg-light-blue rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-navy text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Discover & Connect</h3>
+                    <p class="text-gray-700">Explore and follow fashion-forward users effortlessly for continuous style inspiration.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl p-6 shadow-lg fade-in staggered-delay-2">
+                    <div class="w-14 h-14 bg-mint rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-navy text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Smart Styling Insights</h3>
+                    <p class="text-gray-700">Trend-based and seasonal recommendations enhance your personal style with AI-powered suggestions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenge Feature Section -->
+    <section id="challenges" class="py-20 bg-white relative">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6">Challenge Feature</h2>
+                <p class="text-lg text-gray-700">Engage, Share & Inspire with our interactive style challenges.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="w-full lg:w-1/2 mb-12 lg:mb-0">
+                    <h3 class="playfair text-2xl font-bold text-navy mb-6">Why Challenges Matter</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start fade-in">
+                            <div class="bg-pink rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-users text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Boosts interaction between users</h4>
+                                <p class="text-gray-700">Challenges create natural conversation starters and strengthen community connections.</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start fade-in staggered-delay-1">
+                            <div class="bg-mint rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-palette text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Encourages creativity & self-expression</h4>
+                                <p class="text-gray-700">Themed challenges push users to experiment with new styles and combinations.</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start fade-in staggered-delay-2">
+                            <div class="bg-light-blue rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-leaf text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Promotes sustainable fashion choices</h4>
+                                <p class="text-gray-700">Many challenges focus on reusing existing items or highlighting sustainable brands.</p>
+                            </div>
+                        </li>
+                        
+                        <li class="flex items-start fade-in staggered-delay-3">
+                            <div class="bg-cream rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <i class="fas fa-heart text-navy"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Strengthens the sense of community</h4>
+                                <p class="text-gray-700">Participating in shared challenges creates bonds and shared experiences.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="w-full lg:w-1/2 flex flex-wrap justify-center">
+                    <div class="challenge-bubble bg-mint w-48 h-48 m-4 flex items-center justify-center p-4 fade-in">
+                        <p class="text-navy font-semibold text-center">Second-Hand Day – Promote sustainability by styling a thrifted or pre-loved outfit.</p>
+                    </div>
+                    
+                    <div class="challenge-bubble bg-pink w-56 h-56 m-4 flex items-center justify-center p-4 fade-in staggered-delay-1">
+                        <p class="text-navy font-semibold text-center">Color Theme Challenge – Coordinate with friends and wear a specific color of the day.</p>
+                    </div>
+                    
+                    <div class="challenge-bubble bg-light-blue w-44 h-44 m-4 flex items-center justify-center p-4 fade-in staggered-delay-2">
+                        <p class="text-navy font-semibold text-center">Outfit Swap – Recreate a friend's look with your wardrobe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- This or That Section -->
+    <section class="py-12 bg-light-blue">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-1/2 mb-12 lg:mb-0">
+                    <img src="images/this_or.png" alt="This or That feature demonstration"  class="w-3/4 rounded-xl shadow-xl mx-auto fade-in">
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <div class="max-w-lg mx-auto lg:mx-0">
+                        <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6 fade-in">This <span class="inline-block bg-white rounded-full w-16 h-16 text-center leading-loose">or</span> That</h2>
+                        <p class="text-lg text-gray-700 mb-6 fade-in">Some days, choosing an outfit can be tricky – the first day of school, a special event, or a first date… That's when the app has your back!</p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start fade-in">
+                                <i class="fas fa-check-circle text-navy mt-1 mr-3"></i>
+                                <p class="text-gray-700"><span class="font-semibold">Leverage the Power of Your Community</span> – Share your outfit and get instant feedback from friends and fashion-savvy users.</p>
+                            </li>
+                            <li class="flex items-start fade-in staggered-delay-1">
+                                <i class="fas fa-check-circle text-navy mt-1 mr-3"></i>
+                                <p class="text-gray-700"><span class="font-semibold">Quick Decision with Polls</span> – Upload two or more outfit options and let your friends and followers help you choose the best one!</p>
+                            </li>
+                            <li class="flex items-start fade-in staggered-delay-2">
+                                <i class="fas fa-check-circle text-navy mt-1 mr-3"></i>
+                                <p class="text-gray-700"><span class="font-semibold">Daily Trend Boards</span> – Discover the most popular outfit ideas from the community for inspiration.</p>
+                            </li>
+                            <li class="flex items-start fade-in staggered-delay-3">
+                                <i class="fas fa-check-circle text-navy mt-1 mr-3"></i>
+                                <p class="text-gray-700"><span class="font-semibold">Boost Engagement with Reactions & Comments</span> – Friends can react to your outfits with emojis or leave comments with style advice.</p>
+                            </li>
+                        </ul>
+                        <p class="text-xl font-bold text-navy text-center fade-in staggered-delay-4">YOUR FRIENDS ARE HERE WHEN YOU CAN'T DECIDE!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Wardrobe Section -->
+    <section id="wardrobe" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6">Your Wardrobe, Digitized</h2>
+                <p class="text-lg text-gray-700">Manage your clothing collection smartly and sustainably.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="w-full lg:w-1/2 mb-12 lg:mb-0 relative">
+                    <!-- Wardrobe Animation Container -->
+                    <div class="wardrobe-animation-container">
+                        <!-- Wardrobe Closet -->
+                        <div class="wardrobe-closet">
+                            <!-- Shelves -->
+                            <div class="wardrobe-shelf"></div>
+                            <div class="wardrobe-shelf"></div>
+                            
+                            <!-- Doors -->
+                            <div class="wardrobe-door-left">
+                                <div class="door-handle-left"></div>
+                            </div>
+                            <div class="wardrobe-door-right">
+                                <div class="door-handle-right"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- These clothing items will be created and animated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-2/5">
+                    <ul class="space-y-8">
+                        <li class="fade-in">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-pink rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-search text-navy"></i>
+                                </div>
+                                <h3 class="font-bold text-xl">Track Your Inventory</h3>
+                            </div>
+                            <p class="text-gray-700 ml-14">Easily keep track of what you own and avoid unnecessary shopping. Know exactly what's in your closet at all times.</p>
+                        </li>
+                        
+                        <li class="fade-in staggered-delay-1">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-mint rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-lightbulb text-navy"></i>
+                                </div>
+                                <h3 class="font-bold text-xl">Personalized Suggestions</h3>
+                            </div>
+                            <p class="text-gray-700 ml-14">Get outfit suggestions tailored to your personal style and wardrobe. Our AI learns your preferences over time.</p>
+                        </li>
+                        
+                        <li class="fade-in staggered-delay-2">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-light-blue rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-random text-navy"></i>
+                                </div>
+                                <h3 class="font-bold text-xl">Mix & Match Smarter</h3>
+                            </div>
+                            <p class="text-gray-700 ml-14">Make the most out of your clothes by mixing and matching smarter. Discover new combinations you never thought of.</p>
+                        </li>
+                        
+                        <li class="fade-in staggered-delay-3">
+                            <div class="flex items-center mb-2">
+                                <div class="w-10 h-10 bg-cream rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-chart-line text-navy"></i>
+                                </div>
+                                <h3 class="font-bold text-xl">Track Wear Count</h3>
+                            </div>
+                            <p class="text-gray-700 ml-14">Monitor how often you wear each item and participate in the "Wear It 30 Times" challenge to promote sustainable fashion habits.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Join Section -->
+    <section id="demo" class="py-20 bg-navy text-white relative overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold mb-6">Join Our Demo</h2>
+                <p class="text-lg text-gray-300">Be the first to experience Outfique and help shape the future of social fashion.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="w-full lg:w-1/2 mb-12 lg:mb-0">
+                    <div class="max-w-lg mx-auto lg:mx-0">
+                        <h3 class="text-2xl font-bold mb-4">Why Join Our Demo?</h3>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-gem text-pink mt-1 mr-3"></i>
+                                <p class="text-gray-300"><span class="font-semibold text-white">Exclusive Early Access</span> – Be among the first to try all the features before the public launch.</p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-pink mt-1 mr-3"></i>
+                                <p class="text-gray-300"><span class="font-semibold text-white">Shape the Product</span> – Your feedback will directly influence the development and features of Outfique.</p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-gift text-pink mt-1 mr-3"></i>
+                                <p class="text-gray-300"><span class="font-semibold text-white">Premium Perks</span> – Demo participants will receive special rewards and premium features for free.</p>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-users text-pink mt-1 mr-3"></i>
+                                <p class="text-gray-300"><span class="font-semibold text-white">Join the Community</span> – Connect with other fashion enthusiasts and be part of our founding community.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2">
+                    <div class="demo-card bg-white text-navy p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Sign Up for Demo Access</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            
+                            <div>
+                                <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">Instagram Handle (Optional)</label>
+                                <input type="text" id="instagram" name="instagram" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                            </div>
+                            
+                            <div>
+                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">What interests you most about Outfique?</label>
+                                <select id="interest" name="interest" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                                    <option value="">Select an option</option>
+                                    <option value="ai">AI-Powered Outfit Suggestions</option>
+                                    <option value="sustainability">Sustainable Fashion Features</option>
+                                    <option value="social">Social Features & Challenges</option>
+                                    <option value="wardrobe">Digital Wardrobe Management</option>
+                                    <option value="all">All Features</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-navy text-white font-bold py-3 px-4 rounded-md hover:bg-opacity-90 transition duration-300">Join Demo Waitlist</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dots-pattern top-10 left-10 opacity-10"></div>
+        <div class="dots-pattern bottom-10 right-10 opacity-10"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-cream">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="text-navy playfair font-bold text-3xl mb-4">OUTFIQUE</h2>
+                    <p class="text-gray-700 max-w-md">Your outfit, your story. Join our fashion community focused on personal style, sustainability, and social connections.</p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-navy mr-4"></i>
+                        <p class="text-gray-700">outfiquee@gmail.com</p>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-globe text-navy mr-4"></i>
+                        <p class="text-gray-700">www.outfique.net</p>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-navy mr-4"></i>
+                        <p class="text-gray-700">Çekmeköy/Istanbul</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-navy hover:text-purple-700 transition duration-300">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-navy hover:text-purple-700 transition duration-300">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-navy hover:text-purple-700 transition duration-300">
+                            <i class="fab fa-tiktok text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-300 mt-12 pt-8 text-center">
+                <p class="text-gray-700">&copy; 2025 OUTFIQUE. All rights reserved.</p>
+                <p class="text-gray-500 text-sm mt-2">Prepared by MUT & TUNA</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mobile menu toggle
+            const menuButton = document.querySelector('nav button');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.classList.add('bg-white', 'fixed', 'inset-0', 'z-50', 'p-8', 'flex', 'flex-col', 'items-center', 'justify-center', 'transform', 'transition-transform', 'duration-300', 'translate-x-full');
+            document.body.appendChild(mobileMenu);
+            
+            const menuLinks = [
+                { text: 'Features', href: '#features' },
+                { text: 'Challenges', href: '#challenges' },
+                { text: 'Digital Wardrobe', href: '#wardrobe' },
+                { text: 'Join Demo', href: '#demo' }
+            ];
+            
+            menuLinks.forEach(link => {
+                const anchor = document.createElement('a');
+                anchor.href = link.href;
+                anchor.textContent = link.text;
+                anchor.classList.add('text-navy', 'text-2xl', 'font-bold', 'mb-6', 'hover:text-purple-700', 'transition', 'duration-300');
+                
+                anchor.addEventListener('click', function() {mobileMenu.classList.add('translate-x-full');
+                });
+                
+                mobileMenu.appendChild(anchor);
+            });
+            
+            const closeButton = document.createElement('button');
+            closeButton.innerHTML = '<i class="fas fa-times text-3xl"></i>';
+            closeButton.classList.add('absolute', 'top-8', 'right-8', 'text-navy');
+            
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.add('translate-x-full');
+            });
+            
+            mobileMenu.appendChild(closeButton);
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            
+            // Initialize animation states
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+            });
+            
+            // Initialize the intersection observer
+            setTimeout(() => {
+                observer.observe(document.querySelector('.hero-split'));
+            }, 100);
+
+            // Wardrobe Animation Functions
+            // Get the wardrobe elements
+            const wardrobeContainer = document.querySelector('.wardrobe-animation-container');
+            const wardrobeCloset = document.querySelector('.wardrobe-closet');
+            
+            // Create clothing items with different colors and types
+            const clothingTypes = ['shirt', 'pants', 'dress', 'shoes', 'jacket', 'skirt', 'sunglasses'];
+            const clothingColors = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5'];
+            const numClothingItems = 15; // Number of items to create
+            
+            // Function to create a random clothing item
+            function createClothingItem() {
+                const clothingItem = document.createElement('div');
+                
+                // Random clothing type and color
+                const type = clothingTypes[Math.floor(Math.random() * clothingTypes.length)];
+                const color = clothingColors[Math.floor(Math.random() * clothingColors.length)];
+                
+                // Add classes to the clothing item
+                clothingItem.classList.add('clothing-item', type);
+                
+                // Random horizontal position
+                const leftPosition = Math.random() * 80 + 10; // Between 10% and 90%
+                clothingItem.style.left = `${leftPosition}%`;
+                
+                // Random delay for the animation
+                const delay = Math.random() * 5; // Between 0 and 5 seconds
+                clothingItem.style.animationDelay = `${delay}s`;
+                
+                // Add the item to the container
+                wardrobeContainer.appendChild(clothingItem);
+                
+                return clothingItem;
+            }
+            
+            // Function to animate a clothing item falling
+            function animateClothingItem(item) {
+                // Make the item visible and start the falling animation
+                item.style.opacity = '1';
+                item.style.animation = `fall 2s ease forwards`;
+                
+                // After the fall animation completes, run the enter wardrobe animation
+                setTimeout(() => {
+                    // Only if the wardrobe is open
+                    if (wardrobeCloset.classList.contains('wardrobe-open')) {
+                        item.style.animation = `enterWardrobe 1s ease forwards`;
+                        
+                        // Remove the item after it enters the wardrobe
+                        setTimeout(() => {
+                            item.remove();
+                        }, 1000);
+                    } else {
+                        // If wardrobe isn't open, just remove the item
+                        item.remove();
+                    }
+                }, 2000);
+            }
+            
+            // Create and animate initial batch of clothing items
+            function startAnimation() {
+                // Open the wardrobe doors
+                setTimeout(() => {
+                    wardrobeCloset.classList.add('wardrobe-open');
+                }, 1000);
+                
+                // Create and animate clothing items with intervals
+                for (let i = 0; i < numClothingItems; i++) {
+                    setTimeout(() => {
+                        const item = createClothingItem();
+                        animateClothingItem(item);
+                        
+                        // Create a new item after this one enters the wardrobe
+                        setTimeout(() => {
+                            if (i === numClothingItems - 1) {
+                                // If this is the last item, continue the animation cycle
+                                startAnimationCycle();
+                            }
+                        }, 3000);
+                    }, i * 1000); // Stagger the creation of items
+                }
+            }
+            
+            // Function to continuously create and animate clothing items
+            function startAnimationCycle() {
+                // Create a new batch of clothing items every few seconds
+                setInterval(() => {
+                    const item = createClothingItem();
+                    animateClothingItem(item);
+                }, 2000);
+            }
+            
+            // Start the animation when the section comes into view
+            const wardrobeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startAnimation();
+                        wardrobeObserver.disconnect(); // Only trigger once
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            if (document.getElementById('wardrobe')) {
+                wardrobeObserver.observe(document.getElementById('wardrobe'));
+            }
+        });
+    </script>
+
+</body>
+</html>
