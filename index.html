@@ -229,14 +229,18 @@
             }
         }
         
-        .dots-pattern {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background-image: radial-gradient(circle, var(--navy) 2px, transparent 2px);
-            background-size: 20px 20px;
-            opacity: 0.2;
-        }
+            .dots-pattern {
+                position: absolute;
+                width: 120px;
+                height: 120px;
+                background-image: radial-gradient(circle, var(--navy) 1.5px, transparent 2px);
+                background-size: 16px 16px;
+                opacity: 0.05;
+                transition: opacity 0.5s ease;
+                }
+            .dots-pattern:hover {
+                opacity: 0.1;
+                }
         
         .wave-pattern {
             position: absolute;
@@ -804,25 +808,27 @@
             
             <!-- Right Side: App Showcase with Social Features -->
             <div class="w-full lg:w-1/2 relative">
+                <div class="relative ml-20"> <!-- veya ml-20 deneyebilirsin -->
+
                 <!-- Main Image -->
                 <img src="images/headd.png" alt="Outfit of the day showcase" class="w-4/5 mx-auto rounded-xl shadow-2xl floating">
                 
                 <!-- Original Badges (keep these) -->
-                <div class="absolute -top-8 -right-4 bg-cream rounded-full w-24 h-24 flex items-center justify-center shadow-lg">
+                <div class="absolute -top-8 -right-4 bg-cream rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
                     <p class="text-navy font-bold">AI-Powered</p>
                 </div>
-                <div class="absolute -bottom-8 -left-4 bg-mint rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
+                <div class="absolute -bottom-8 -right-10 bg-mint rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
                     <p class="text-navy font-bold text-center">Daily Style Widget</p>
                 </div>
                 
                 <!-- New Feature Badge: Social Feed -->
-                <div class="absolute top-1/4 -right-6 bg-light-blue rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg">
+                <div class="absolute -top-8 -left-4 bg-light-blue rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
                     <i class="fas fa-users text-navy text-lg mb-1"></i>
                     <p class="text-navy font-bold text-sm text-center">Friend-to-Friend Sharing</p>
                 </div>
                 
                 <!-- New Feature Badge: Style Communities -->
-                <div class="absolute top-2/3 -left-6 bg-cream rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg">
+                <div class="absolute -bottom-8 -left-4 bg-cream rounded-full w-32 h-32 flex flex-col items-center justify-center shadow-lg">
                     <i class="fas fa-fire text-navy text-lg mb-1"></i>
                     <p class="text-navy font-bold text-sm text-center">Trending Styles</p>
                 </div>
@@ -859,7 +865,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-lg mb-1">Encouraging Overconsumption</h4>
-                                <                                <p class="text-gray-700">Users aren't encouraged to maximize their existing wardrobe instead of buying new clothes.</p>
+                                 <p class="text-gray-700">Users aren't encouraged to maximize their existing wardrobe instead of buying new clothes.</p>
                             </div>
                         </li>
                         <li class="flex items-start">
