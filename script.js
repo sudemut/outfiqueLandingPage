@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const waitlistCounter = document.getElementById('waitlist-count');
     
     // API URL - change this to your deployed Vercel URL
-    const API_URL =' https://outfique-landing-page.vercel.app/api/waitlist';
+    const API_URL ='https://outfique-landing-page.vercel.app/api/waitlist';
     
     // Fetch the current waitlist count on page load
     fetchWaitlistCount();
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       waitlistForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form data
+        // Get form dataa
         const formData = {
           name: document.getElementById('name').value,
           email: document.getElementById('email').value,
