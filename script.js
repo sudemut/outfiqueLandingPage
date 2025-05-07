@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const waitlistCounter = document.getElementById('waitlist-count');
     
     // API URL - change this to your deployed Vercel URL
-    const API_URL ='https://outfique-landing-page.vercel.app/api/waitlist';
+    const API_URL ='https://websitebackend-sigma.vercel.app/api/waitlist';
     
     // Fetch the current waitlist count on page load
     fetchWaitlistCount();
