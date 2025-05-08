@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="turkish.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OUTFIQUE | Your Outfit, Your Story</title>
@@ -229,14 +230,18 @@
             }
         }
         
-        .dots-pattern {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background-image: radial-gradient(circle, var(--navy) 2px, transparent 2px);
-            background-size: 20px 20px;
-            opacity: 0.2;
-        }
+            .dots-pattern {
+                position: absolute;
+                width: 120px;
+                height: 120px;
+                background-image: radial-gradient(circle, var(--navy) 1.5px, transparent 2px);
+                background-size: 16px 16px;
+                opacity: 0.1;
+                transition: opacity 0.5s ease;
+                }
+            .dots-pattern:hover {
+                opacity: 0.15;
+                }
         
         .wave-pattern {
             position: absolute;
@@ -762,12 +767,13 @@
                 <a href="#features" class="text-navy hover:text-purple-700 transition duration-300">Features</a>
                 <a href="#challenges" class="text-navy hover:text-purple-700 transition duration-300">Challenges</a>
                 <a href="#wardrobe" class="text-navy hover:text-purple-700 transition duration-300">Digital Wardrobe</a>
+                <a href="#" class="translate-trigger">Türkçe</a>
                 <a 
   href="#demo" 
   class="inline-block w-fit bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md hover:opacity-90 transition duration-300 ease-in-out text-center"
   aria-label="Join the demo waitlist"
 >
-  🚀 Join the Demo Waitlist
+   Join the Demo Waitlist
 </a>
 
             </div>
@@ -791,41 +797,43 @@
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a 
   href="#demo" 
-  class="inline-block w-fit bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md hover:opacity-90 transition duration-300 ease-in-out text-center"
+  class="inline-block w-fit bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-24 py-6 rounded-full font-semibold text-4xlg shadow-md hover:opacity-90 transition duration-300 ease-in-out text-center"
   aria-label="Join the demo waitlist"
 >
-  🚀 Join the Demo Waitlist
+   Join the Demo Waitlist
 </a>
 
-                        <a href="#features" class="border-2 border-navy text-navy px-8 py-3 rounded-full font-semibold hover:bg-navy hover:text-white transition duration-300 text-center">Explore Features</a>
+                      
                     </div>
                 </div>
             </div>
             
             <!-- Right Side: App Showcase with Social Features -->
             <div class="w-full lg:w-1/2 relative">
+                <div class="relative ml-20"> <!-- veya ml-20 deneyebilirsin -->
+
                 <!-- Main Image -->
                 <img src="images/headd.png" alt="Outfit of the day showcase" class="w-4/5 mx-auto rounded-xl shadow-2xl floating">
                 
                 <!-- Original Badges (keep these) -->
-                <div class="absolute -top-8 -right-4 bg-cream rounded-full w-24 h-24 flex items-center justify-center shadow-lg">
-                    <p class="text-navy font-bold">AI-Powered</p>
-                </div>
-                <div class="absolute -bottom-8 -left-4 bg-mint rounded-full w-32 h-32 flex items-center justify-center shadow-lg">
-                    <p class="text-navy font-bold text-center">Daily Style Widget</p>
+                <div class="absolute -top-8 -right-4 bg-cream rounded-full w-20 h-20 md:w-32 md:h-32 flex items-center justify-center shadow-lg">
+                    <p class="text-navy font-bold text-xs md:text-base text-center">AI-Powered</p>
                 </div>
                 
-                <!-- New Feature Badge: Social Feed -->
-                <div class="absolute top-1/4 -right-6 bg-light-blue rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg">
-                    <i class="fas fa-users text-navy text-lg mb-1"></i>
-                    <p class="text-navy font-bold text-sm text-center">Friend-to-Friend Sharing</p>
+                <div class="absolute -bottom-8 -right-10 bg-mint rounded-full w-20 h-20 md:w-32 md:h-32 flex items-center justify-center shadow-lg">
+                    <p class="text-navy font-bold text-xs md:text-base text-center">Daily Style Widget</p>
                 </div>
                 
-                <!-- New Feature Badge: Style Communities -->
-                <div class="absolute top-2/3 -left-6 bg-cream rounded-full w-28 h-28 flex flex-col items-center justify-center shadow-lg">
-                    <i class="fas fa-fire text-navy text-lg mb-1"></i>
-                    <p class="text-navy font-bold text-sm text-center">Trending Styles</p>
+                <div class="absolute -top-8 -left-4 bg-light-blue rounded-full w-20 h-20 md:w-32 md:h-32 flex flex-col items-center justify-center shadow-lg">
+                    <i class="fas fa-users text-navy text-sm md:text-lg mb-1"></i>
+                    <p class="text-navy font-bold text-xs md:text-sm text-center leading-tight">Friend-to-Friend</p>
                 </div>
+                
+                <div class="absolute -bottom-8 -left-4 bg-cream rounded-full w-20 h-20 md:w-32 md:h-32 flex flex-col items-center justify-center shadow-lg">
+                    <i class="fas fa-fire text-navy text-sm md:text-lg mb-1"></i>
+                    <p class="text-navy font-bold text-xs md:text-sm text-center leading-tight">Trending Styles</p>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -859,7 +867,7 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-lg mb-1">Encouraging Overconsumption</h4>
-                                <p class="text-gray-700">Users aren't encouraged to maximize their existing wardrobe instead of buying new clothes.</p>
+                                 <p class="text-gray-700">Users aren't encouraged to maximize their existing wardrobe instead of buying new clothes.</p>
                             </div>
                         </li>
                         <li class="flex items-start">
@@ -915,7 +923,6 @@
 <section id="features" class="py-20 relative overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center mb-16">
-            <span class="ai-badge">Powered by AI</span>
             <h2 class="playfair text-4xl md:text-5xl font-bold text-navy mb-6 animated-gradient-text">Outfit Analysis & Smart Styling</h2>
             <p class="text-lg text-gray-700">Our AI recognizes every item in your outfit photo, adds it to your digital wardrobe, and provides personalized styling recommendations.</p>
         </div>
@@ -1224,7 +1231,7 @@
                                 <div class="w-10 h-10 bg-light-blue rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-random text-navy"></i>
                                 </div>
-                                <h3 class="font-bold text-xl">Mix & Match Smarter</h3>
+                                <h3 class="font-bold text-xl">Mix and Match Smarter</h3>
                             </div>
                             <p class="text-gray-700 ml-14">Make the most out of your clothes by mixing and matching smarter. Discover new combinations you never thought of.</p>
                         </li>
@@ -1280,35 +1287,46 @@
                 <div class="w-full lg:w-1/2">
                     <div class="demo-card bg-white text-navy p-8 rounded-xl">
                         <h3 class="text-2xl font-bold mb-6 text-center">Sign Up for Demo Access</h3>
-                        <form class="space-y-4">
+                        <!-- Waitlist counter display (optional) -->
+                        <div class="text-center mb-6">
+                            <p class="text-sm font-medium text-gray-700">
+                                Join <span id="waitlist-count">0</span> others on our waitlist!
+                            </p>
+                        </div>
+
+                        <form id="demo-waitlist-form" class="space-y-4">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md">
                             </div>
                             
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md">
                             </div>
                             
                             <div>
-                                <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">Instagram Handle (Optional)</label>
-                                <input type="text" id="instagram" name="instagram" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                                <label for="instagram" class="block text-sm font-medium text-gray-700 mb-1">Instagram (optional)</label>
+                                <input type="text" id="instagram" name="instagram" class="w-full px-4 py-2 border border-gray-300 rounded-md">
                             </div>
                             
-                            <div>
-                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">What interests you most about Outfique?</label>
-                                <select id="interest" name="interest" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600">
-                                    <option value="">Select an option</option>
+                            <div class="mb-6">
+                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-2">What interests you most about Outfique?</label>
+                                <select id="interest" name="interest" class="w-full px-4 py-3 text-base border border-gray-300 rounded-md touch-manipulation">
+                                    <option value="" disabled selected hidden>Select an option</option>
                                     <option value="ai">AI-Powered Outfit Suggestions</option>
                                     <option value="sustainability">Sustainable Fashion Features</option>
                                     <option value="social">Social Features & Challenges</option>
                                     <option value="wardrobe">Digital Wardrobe Management</option>
                                     <option value="all">All Features</option>
                                 </select>
-                            </div>
+                              </div>
+                              
                             
-                            <button type="submit" class="w-full bg-navy text-white font-bold py-3 px-4 rounded-md hover:bg-opacity-90 transition duration-300">Join Demo Waitlist</button>
+                            <button type="submit" class="w-full bg-navy text-white font-bold py-3 px-4 rounded-md">Join Demo Waitlist</button>
+                            
+                            <!-- Status message container -->
+                            <div id="form-status-message" class="text-center"></div>
                         </form>
                     </div>
                 </div>
@@ -1318,7 +1336,7 @@
         <div class="dots-pattern top-10 left-10 opacity-10"></div>
         <div class="dots-pattern bottom-10 right-10 opacity-10"></div>
     </section>
-
+    
     <!-- Footer -->
     <footer class="py-12 bg-cream">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -1361,7 +1379,7 @@
             </div>
         </div>
     </footer>
-    
+     
     <!-- JavaScript -->
     <script>
         // Intersection Observer for fade-in animations
@@ -1557,6 +1575,11 @@
             }
         });
     </script>
+    <!-- Script for backend connection -->
+    <script src="script.js"></script>
+    
+    <script defer data-domain="outfique.net" src="https://plausible.io/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"></script>
+    <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 
 </body>
 </html>
