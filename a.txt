@@ -767,7 +767,7 @@
                 <a href="#features" class="text-navy hover:text-purple-700 transition duration-300">Features</a>
                 <a href="#challenges" class="text-navy hover:text-purple-700 transition duration-300">Challenges</a>
                 <a href="#wardrobe" class="text-navy hover:text-purple-700 transition duration-300">Digital Wardrobe</a>
-                <a href="#" class="translate-trigger">Türkçe</a>
+                <a href="#" class="translate-trigger">Turkish</a>
                 <a 
   href="#demo" 
   class="inline-block w-fit bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md hover:opacity-90 transition duration-300 ease-in-out text-center"
